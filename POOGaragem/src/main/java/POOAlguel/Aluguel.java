@@ -9,5 +9,10 @@ package POOAlguel;
  * @author Jona
  */
 public class Aluguel {
-    
-}
+    private Cliente cliente;
+    private Vaga vaga;
+    private long horaInicio;
+    private long horaFim;
+    private double valorTotal;
+
+   
