@@ -12,7 +12,7 @@ public class ProjetoGaragem {//
 
      public static void main(String[] args) {
         Carro novoCarro = new Carro();
-        novoCarro.setModelo("teste");
+        novoCarro.setModelo("teste 2");
         
         System.out.println(novoCarro.getModelo());
     }
