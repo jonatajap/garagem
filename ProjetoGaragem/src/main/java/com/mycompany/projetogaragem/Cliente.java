@@ -14,7 +14,7 @@ public class Cliente {
     private String cpf;
     private String contato;
     private Carro carro;
- 
+
 // Abaixo método costrutor
     public Cliente(String nome, String cpf, String contato) {
         this.nome = nome;
@@ -25,6 +25,17 @@ public class Cliente {
     // Cadastra o carro do cliente
     public void cadastrarCarro(Carro carro) {
         this.carro = carro;
+    }
+
+    // Método para alugar uma vaga
+    public Aluguel alugarVaga(Garagem garagem) {
+        Vaga vagaDisponivel = garagem.procurarVagaDisponivel();
+        if (vagaDisponivel != null) {
+            Aluguel aluguel = new Aluguel(this, vagaDisponivel);
+            vagaDisponivel.ocupar(this.carro);
+            return aluguel;
+        }
+        return null;
     }
 
 }

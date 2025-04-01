@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projetogaragem;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * @author Jona
  */
 public class Garagem {
-        private int idGaragem;
+
+    private int idGaragem;
     private String localizacao;
     private List<Vaga> vagas;
 
@@ -45,6 +47,3 @@ public class Garagem {
         return vagasOcupadas;
     }
 }
-
-   
-  
