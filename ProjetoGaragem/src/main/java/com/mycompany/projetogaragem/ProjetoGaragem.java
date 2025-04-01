@@ -8,7 +8,7 @@ package com.mycompany.projetogaragem;
  *
  * @author Jona
  */
-public class ProjetoGaragem {
+public class ProjetoGaragem {//
 
      public static void main(String[] args) {
         Carro novoCarro = new Carro();
