@@ -14,6 +14,14 @@ public class Cliente {
     private String cpf;
     private String contato;
     private Carro carro;
+    
+    // Abaixo método costrutor
+    public Cliente(String nome, String cpf, String contato) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.contato = contato;
+    }
+
 /**
      * @return the nome
      */
@@ -71,12 +79,6 @@ public class Cliente {
     }
     
     
-// Abaixo método costrutor
-    public Cliente(String nome, String cpf, String contato) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.contato = contato;
-    }
 
     // Cadastra o carro do cliente
     public void cadastrarCarro(Carro carro) {

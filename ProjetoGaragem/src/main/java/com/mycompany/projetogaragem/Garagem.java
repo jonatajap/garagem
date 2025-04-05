@@ -17,6 +17,14 @@ public class Garagem {
     private String localizacao;
     private List<Vaga> vagas;
     
+    public Garagem(int idGaragem, String localizacao, int numVagas) {
+        this.idGaragem = idGaragem;
+        this.localizacao = localizacao;
+        this.vagas = new ArrayList<>();
+        for (int i = 1; i <= numVagas; i++) {
+            vagas.add(new Vaga(i));  // Inicializa as vagas
+        }
+    }
     /**
      * @return the idGaragem
      */
@@ -59,16 +67,7 @@ public class Garagem {
         this.vagas = vagas;
     }
     
-
-    public Garagem(int idGaragem, String localizacao, int numVagas) {
-        this.idGaragem = idGaragem;
-        this.localizacao = localizacao;
-        this.vagas = new ArrayList<>();
-        for (int i = 1; i <= numVagas; i++) {
-            vagas.add(new Vaga(i));  // Inicializa as vagas
-        }
-    }
-
+  
     // Método para procurar uma vaga disponível
     public Vaga procurarVagaDisponivel() {
         for (Vaga vaga : getVagas()) {
