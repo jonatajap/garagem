@@ -14,7 +14,63 @@ public class Cliente {
     private String cpf;
     private String contato;
     private Carro carro;
+/**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
 
+    /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @return the contato
+     */
+    public String getContato() {
+        return contato;
+    }
+
+    /**
+     * @return the carro
+     */
+    public Carro getCarro() {
+        return carro;
+    }
+    
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    /**
+     * @param contato the contato to set
+     */
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+
+    /**
+     * @param carro the carro to set
+     */
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
+    
+    
 // Abaixo método costrutor
     public Cliente(String nome, String cpf, String contato) {
         this.nome = nome;
@@ -24,7 +80,7 @@ public class Cliente {
 
     // Cadastra o carro do cliente
     public void cadastrarCarro(Carro carro) {
-        this.carro = carro;
+        this.setCarro(carro);
     }
 
     // Método para alugar uma vaga
@@ -32,7 +88,7 @@ public class Cliente {
         Vaga vagaDisponivel = garagem.procurarVagaDisponivel();
         if (vagaDisponivel != null) {
             Aluguel aluguel = new Aluguel(this, vagaDisponivel);
-            vagaDisponivel.ocupar(this.carro);
+            vagaDisponivel.ocupar(this.getCarro());
             return aluguel;
         }
         return null;

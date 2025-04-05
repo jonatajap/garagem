@@ -9,11 +9,84 @@ package com.mycompany.projetogaragem;
  * @author Jona
  */
 public class Aluguel {
+
+   
     private Cliente cliente;
     private Vaga vaga;
     private long horaInicio;
     private long horaFim;
     private double valorTotal;
+    
+      /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @return the vaga
+     */
+    public Vaga getVaga() {
+        return vaga;
+    }
+
+    /**
+     * @return the horaInicio
+     */
+    public long getHoraInicio() {
+        return horaInicio;
+    }
+
+    /**
+     * @return the horaFim
+     */
+    public long getHoraFim() {
+        return horaFim;
+    }
+
+    /**
+     * @return the valorTotal
+     */
+    public double getValorTotal() {
+        return valorTotal;
+    }
+    
+      /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @param vaga the vaga to set
+     */
+    public void setVaga(Vaga vaga) {
+        this.vaga = vaga;
+    }
+
+    /**
+     * @param horaInicio the horaInicio to set
+     */
+    public void setHoraInicio(long horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    /**
+     * @param horaFim the horaFim to set
+     */
+    public void setHoraFim(long horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    /**
+     * @param valorTotal the valorTotal to set
+     */
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    
 }
 
    
