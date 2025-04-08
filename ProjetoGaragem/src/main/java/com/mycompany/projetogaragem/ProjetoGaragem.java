@@ -3,6 +3,12 @@
  */
 
 package com.mycompany.projetogaragem;
+import br.unipac.alugueis.alugueis.Aluguel;
+import br.unipac.aeroportos.aeroporto.Bilhete;
+import br.unipac.aeroportos.aeroporto.Passageiro;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 /**
  *
