@@ -4,6 +4,19 @@
  */
 package com.mycompany.projetogaragem;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+
+@Entity
+@Table(name = "vagas")
+@Access(AccessType.FIELD)
+@NoArgsConstructor
+public class Vaga {
 /**
  *
  * @author Jona

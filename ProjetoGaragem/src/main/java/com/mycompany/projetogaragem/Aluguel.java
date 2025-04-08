@@ -3,15 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projetogaragem;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Entity
+@Table(name = "alugueis")
+@Access(AccessType.FIELD)
+@NoArgsConstructor
+public class Aluguel {
+
+}
+//verificar as colunas
+    @Id
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "nome")
+    @Getter
+    @Setter
+    private String nome;
+
+    @Column(name = "telefone")
+    @Getter
+    @Setter
+    private String telefone;
+
+    //Annotation indicando que há uma relação N:1 no BD para a relação com
+    //aeroportos
+    @ManyToOne
+    @JoinColumn(name = "id_aeroporto")
+    @Getter
+    @Setter
+    private Aeroporto aeroporto;
 /**
  *
  * @author Jona

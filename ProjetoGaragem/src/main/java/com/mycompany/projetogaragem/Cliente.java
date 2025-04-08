@@ -4,6 +4,19 @@
  */
 package com.mycompany.projetogaragem;
 
+mport jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+@Entity
+@Table(name = "clientesj")
+@Access(AccessType.FIELD)
+@NoArgsConstructor
+public class Cliente {
 /**
  *
  * @author Jona
