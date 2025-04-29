@@ -1,28 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.projetogaragem;
 
-import com.mycompany.alugueis.alugueis.Aluguel;
-import com.mycompany.carros.carros.Carro;
-import com.mycompany.clientesj.clientesj.Clientej;
-import br.unipac.garagens.garagens.Garagem;
-import com.mycompany.vagas.vagas.Vaga;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import com.mycompany.projetogaragem.model.*;
 
-/**
- *
- * @author Jona
- */
-public class ProjetoGaragem {//
+public class ProjetoGaragem {
 
-     public static void main(String[] args) {
-        Carro novoCarro = new Carro();
-        novoCarro.setModelo("teste 2");
-        
-        System.out.println(novoCarro.getModelo());
+    public static void main(String[] args) {
+        Carro carro = new Carro("Gol", "ABC-1234", "Prata");
+        Cliente cliente = new Cliente("João", "12345678900", "99999-0000");
+        cliente.cadastrarCarro(carro);
+
+        Garagem garagem = new Garagem("Centro", 5);
+        Vaga vaga = garagem.procurarVagaDisponivel();
+
+        if (vaga != null) {
+            vaga.ocupar(carro);
+            Aluguel aluguel = new Aluguel(cliente, vaga);
+
+            System.out.println("Vaga ocupada por: " + cliente.getNome());
+
+            aluguel.finalizarAluguel();
+            System.out.println("Aluguel finalizado. Valor: R$" + aluguel.getValorTotal());
+        } else {
+            System.out.println("Sem vagas disponíveis.");
+        }
     }
 }

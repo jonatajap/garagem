@@ -1,35 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.projetogaragem;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
 
 @Entity
 @Table(name = "vagas")
-@Access(AccessType.FIELD)
+@Getter
+@Setter
 @NoArgsConstructor
 public class Vaga {
-/**
- *
- * @author Jona
- */
-public class Vaga {
 
-   
+    @Id
     private int idVaga;
+
     private boolean ocupada;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Carro carro;
+
     private long horaEntrada;
-    
-    
 
     public Vaga(int idVaga) {
         this.idVaga = idVaga;
@@ -37,61 +28,14 @@ public class Vaga {
         this.carro = null;
     }
 
-    // Ocupa a vaga
     public void ocupar(Carro carro) {
-        this.setOcupada(true);
-        this.setCarro(carro);
-        this.setHoraEntrada(System.currentTimeMillis());  // Marca o horário de entrada
-    }
-
-    // Libera a vaga
-    public void liberar() {
-        this.setOcupada(false);
-        this.setCarro(null);
-    }
-
-    // Verifica se a vaga está ocupada
-    public boolean isOcupada() {
-        return ocupada;
-    }
-
-    // Obtém a hora de entrada
-    public long getHoraEntrada() {
-        return horaEntrada;
-    }
-
-    // Obtém o carro que ocupa a vaga
-    public Carro getCarro() {
-        return carro;
-    }
-    
-     /**
-     * @param idVaga the idVaga to set
-     */
-    public void setIdVaga(int idVaga) {
-        this.idVaga = idVaga;
-    }
-
-    /**
-     * @param ocupada the ocupada to set
-     */
-    public void setOcupada(boolean ocupada) {
-        this.ocupada = ocupada;
-    }
-
-    /**
-     * @param carro the carro to set
-     */
-    public void setCarro(Carro carro) {
+        this.ocupada = true;
         this.carro = carro;
+        this.horaEntrada = System.currentTimeMillis();
     }
 
-    /**
-     * @param horaEntrada the horaEntrada to set
-     */
-    public void setHoraEntrada(long horaEntrada) {
-        this.horaEntrada = horaEntrada;
+    public void liberar() {
+        this.ocupada = false;
+        this.carro = null;
     }
-
-    
 }
