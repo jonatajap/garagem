@@ -10,17 +10,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Cliente.buscaTodos", query = "SELECT c FROM Cliente c"),
+        @NamedQuery(name = "Cliente.buscaNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
+})
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long cliente_id;
 
     private String nome;
+
     private String cpf;
     private String contato;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "dono", orphanRemoval = true, cascade = CascadeType.ALL)
     private Carro carro;
 
     public Cliente(String nome, String cpf, String contato) {
@@ -30,6 +35,8 @@ public class Cliente {
     }
 
     public void cadastrarCarro(Carro carro) {
+
         this.carro = carro;
+        carro.setDono(this);
     }
 }

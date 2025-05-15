@@ -9,25 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "garagens")
-@Getter
-@Setter
+@Table(name = "garagem")
 @NoArgsConstructor
 public class Garagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long garagem_id;
 
     private String localizacao;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "garagem", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vaga> vagas = new ArrayList<>();
 
     public Garagem(String localizacao, int numVagas) {
         this.localizacao = localizacao;
         for (int i = 1; i <= numVagas; i++) {
-            vagas.add(new Vaga(i));
+            vagas.add(new Vaga(i, this));
         }
     }
 

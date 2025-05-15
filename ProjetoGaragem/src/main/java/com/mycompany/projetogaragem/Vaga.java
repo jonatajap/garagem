@@ -13,29 +13,22 @@ import lombok.Setter;
 public class Vaga {
 
     @Id
-    private int idVaga;
+    private int vaga_id;
 
     private boolean ocupada;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Carro carro;
 
-    private long horaEntrada;
+    @ManyToOne
+    @JoinColumn(name = "garagem_id")
+    private Garagem garagem;
 
-    public Vaga(int idVaga) {
-        this.idVaga = idVaga;
+    public Vaga(int idVaga, Garagem garagem) {
+        this.vaga_id = idVaga;
         this.ocupada = false;
         this.carro = null;
+        this.garagem = garagem;
     }
 
-    public void ocupar(Carro carro) {
-        this.ocupada = true;
-        this.carro = carro;
-        this.horaEntrada = System.currentTimeMillis();
-    }
-
-    public void liberar() {
-        this.ocupada = false;
-        this.carro = null;
-    }
 }

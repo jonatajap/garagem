@@ -1,5 +1,6 @@
 package com.mycompany.projetogaragem;
 
+import com.mysql.cj.xdevapi.Client;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,10 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente dono;
+
     private String modelo;
     private String placa;
     private String cor;
@@ -24,5 +29,6 @@ public class Carro {
         this.modelo = modelo;
         this.placa = placa;
         this.cor = cor;
+
     }
 }
