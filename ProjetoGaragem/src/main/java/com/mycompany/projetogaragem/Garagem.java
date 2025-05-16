@@ -28,7 +28,7 @@ public class Garagem {
             vagas.add(new Vaga(i, this));
         }
     }
-
+/*
     public Vaga procurarVagaDisponivel() {
         return vagas.stream().filter(v -> !v.isOcupada()).findFirst().orElse(null);
     }
@@ -39,5 +39,5 @@ public class Garagem {
             if (v.isOcupada()) ocupadas.add(v);
         }
         return ocupadas;
-    }
+    }*/
 }

@@ -17,10 +17,21 @@ public class ProjetoGaragem {
     public static void adicionandoValores1() {
 
         // Criação da fábrica e gerenciador de entidades
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("umbler_database");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
+        
+        Cliente c = new Cliente("a", "b", "c");
+        em.persist(c);
+        
+        Carro carro = new Carro("Fiat", "AAA1212", "Cinza");
+        em.persist(carro);
+        
+           Carro carro2 = new Carro("Ford", "bbb1212", "Branco");
+        em.persist(carro2);
+        
+        /*
 
         // Criação dos carros
         Carro carro1 = new Carro(
@@ -54,8 +65,8 @@ public class ProjetoGaragem {
         em.persist(garagem);
 
         //Criação das Vagas relacionadas com a garagem
-        Vaga vaga1 = garagem.procurarVagaDisponivel();
-        Vaga vaga2 = garagem.procurarVagaDisponivel();
+        //Vaga vaga1 = garagem.procurarVagaDisponivel();
+      //  Vaga vaga2 = garagem.procurarVagaDisponivel();
 
 
         //Inserção dos dados no BD
@@ -70,13 +81,14 @@ public class ProjetoGaragem {
         em.persist(vaga1);
         em.persist(vaga2);
 
+*/
         //Finaliza as transações e fechas as conexões
         em.getTransaction().commit();
 
         em.close();
         emf.close();
     }
-
+/*
     public static void puxandoDados() {
 
         System.out.println("Buscando os Clientes...\n");
@@ -156,5 +168,5 @@ public class ProjetoGaragem {
 
         em.close();
         emf.close();
-    }
+    }*/
 }

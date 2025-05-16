@@ -52,17 +52,18 @@ public class Aluguel {
     }
 
     public void vagaOcupar() {
+        /*
         if (this.cliente.getCarro() == null && this.vaga.isOcupada()) {
             this.vaga.setOcupada(true);
             this.vaga.setCarro(cliente.getCarro());
         }
         else{
             throw new IllegalStateException("Nenhum Carro Associado ao Cliente ou Vaga Ocupada");
-        }
+        }*/
     }
 
     public void vagaLiberar() {
-        this.vaga.setOcupada(false);
-        this.vaga.setCarro(null);
+       // this.vaga.setOcupada(false);
+      //  this.vaga.setCarro(null);
     }
 }

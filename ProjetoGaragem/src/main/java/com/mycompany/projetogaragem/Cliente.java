@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "jonata_clientes")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,6 +20,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cliente_id;
 
+    @Column(name="nome_cliente")
     private String nome;
 
     private String cpf;
@@ -37,6 +38,6 @@ public class Cliente {
     public void cadastrarCarro(Carro carro) {
 
         this.carro = carro;
-        carro.setDono(this);
+      //  carro.setDono(this);
     }
 }
