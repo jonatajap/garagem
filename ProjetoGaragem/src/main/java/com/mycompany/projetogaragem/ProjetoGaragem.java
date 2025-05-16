@@ -1,9 +1,6 @@
 package com.mycompany.projetogaragem;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -87,25 +84,77 @@ public class ProjetoGaragem {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
         EntityManager em = emf.createEntityManager();
 
-        // Buscar todos os clientes
+        // Quantidade de clientes (JPQL Dinâmica)
+        Query qtd = em.createQuery("SELECT COUNT(c) FROM Cliente c");
+        long qtdClientes = (long)qtd.getSingleResult();
+        System.out.println("Quantidade de Clientes: " + qtdClientes + "\n---");
+
+        // Buscar todos os clientes (Named Querry)
         TypedQuery<Cliente> queryTodos = em.createNamedQuery("Cliente.buscaTodos", Cliente.class);
         List<Cliente> todos = queryTodos.getResultList();
 
 
-        System.out.println("Todos os clientes:");
+        System.out.println("Todos os clientes:\n -----");
         for (Cliente c : todos) {
-            System.out.println("Nome: " + c.getNome() + "\nCPF: " + c.getCpf() + "\nContato: " + c.getContato());
+            System.out.println("Nome: " + c.getNome() + "\nCPF: " + c.getCpf() + "\nContato: " + c.getContato() + "\n-----");
         }
 
-        // Buscar clientes por nome
+        // Buscar clientes por nome (Named Querry)
         TypedQuery<Cliente> queryPorNome = em.createNamedQuery("Cliente.buscaNome", Cliente.class);
         queryPorNome.setParameter("nome", "Carlos");
         List<Cliente> encontrados = queryPorNome.getResultList();
 
-        System.out.println("Clientes com nome Carlos:");
+        System.out.println("Clientes com nome Carlos:\n-----");
         for (Cliente encontrado : encontrados) {
 
-            System.out.println("Nome: " + encontrado.getNome() + "\nCPF: " + encontrado.getCpf() + "\nContato: " + encontrado.getContato());
+            System.out.println("Nome: " + encontrado.getNome() + "\nCPF: " + encontrado.getCpf() + "\nContato: " + encontrado.getContato() + "\n-----");
         }
+
+        emf.close();
+        em.close();
+    }
+
+    public static void atualizarDados(){
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        //Requisição para Atualizar os dados
+        Query uptQuerry = em.createQuery("UPDATE Cliente c SET c.nome = 'Joao' WHERE c.cliente_id = 2");
+        int qtdUpdate = uptQuerry.executeUpdate();
+
+        //Executa as mudanças;
+        em.getTransaction().commit();
+
+        System.out.println("\nForam Atualizados " + qtdUpdate + "Clientes!");
+
+
+        em.close();
+        emf.close();
+
+    }
+
+    public static void deletarDados(){
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        //Requisição para Deletar os dados
+        Query dltQuerry = em.createQuery("DELETE FROM Carro c WHERE c.id = :id");
+        dltQuerry.setParameter("id", "1");
+
+        int qtdDelete = dltQuerry.executeUpdate();
+
+        //Executa as mudanças;
+        em.getTransaction().commit();
+
+        System.out.println("Foram Deletados " + qtdDelete + " Carros!");
+
+        em.close();
+        emf.close();
     }
 }
