@@ -28,7 +28,7 @@ public class Garagem {
             vagas.add(new Vaga(i, this));
         }
     }
-/*
+/*PARTE QUE ESTÁ RECLAMANDO COM ALGUM ERRO 
     public Vaga procurarVagaDisponivel() {
         return vagas.stream().filter(v -> !v.isOcupada()).findFirst().orElse(null);
     }

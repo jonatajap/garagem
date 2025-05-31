@@ -18,17 +18,47 @@ public class Carro {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "dono_id")
     private Cliente dono;
 
     private String modelo;
     private String placa;
     private String cor;
 
-    public Carro(String modelo, String placa, String cor) {
-        this.modelo = modelo;
-        this.placa = placa;
-        this.cor = cor;
+    private Carro(Builder builder) {
+        this.modelo = builder.modelo;
+        this.placa = builder.placa;
+        this.cor = builder.cor;
+    }
 
+    public static class Builder{
+         public String modelo;
+         public String placa;
+         public String cor;
+
+         public Builder(){}
+
+         public Builder addModelo(String modelo){
+
+             this.modelo = modelo;
+             return this;
+         }
+
+        public Builder addCor(String cor){
+
+            this.cor = cor;
+            return this;
+        }
+
+        public Builder addPlaca(String placa){
+
+            this.placa = placa;
+            return this;
+        }
+
+        public Carro build(){
+
+             return new Carro(this);
+         }
     }
 }
