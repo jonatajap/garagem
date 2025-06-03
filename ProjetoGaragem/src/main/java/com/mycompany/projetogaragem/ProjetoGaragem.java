@@ -22,6 +22,7 @@ public class ProjetoGaragem {
 
         em.getTransaction().begin();
 
+        /*
         // Criação dos carros
         Carro carro1 = new Carro(
                 "Gol",
@@ -32,7 +33,18 @@ public class ProjetoGaragem {
                 "BMW",
                 "CBA-4321",
                 "Preta");
-
+*/
+        
+        Carro.Builder builder = new Carro.Builder();
+        builder.addCor("Prata").addModelo("Gol").addPlaca("XYC");
+        
+        Carro carro1 = builder.build();
+        
+        Carro.Builder builder = new Carro.Builder();
+        builder.addCor("Preto").addModelo("Corola").addPlaca("JAP1108 ");
+       
+        Carro carro2 = builder.build();
+        
 
         // Criação dos clientes e Relacionamento entre seus respectivos carros
         Cliente cliente1 = new Cliente(
