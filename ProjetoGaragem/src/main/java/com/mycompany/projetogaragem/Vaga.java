@@ -23,12 +23,24 @@ public class Vaga {
     @ManyToOne
     @JoinColumn(name = "garagem_id")
     private Garagem garagem;
+    
+    public boolean isOcupada(){
+        return ocupada;
+    }
 
     public Vaga(int idVaga, Garagem garagem) {
         this.vaga_id = idVaga;
         this.ocupada = false;
         this.carro = null;
         this.garagem = garagem;
+    }
+    
+    public void setCarro(Carro carro){
+        this.carro = carro;
+    }
+    
+    public void setOcupada(boolean ocupada){
+        this.ocupada = ocupada;
     }
 
 }

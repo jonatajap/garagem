@@ -11,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "jonata_garagem")
 @NoArgsConstructor
+@Getter
+@Setter
 public class Garagem {
 
     @Id
@@ -28,7 +30,7 @@ public class Garagem {
             vagas.add(new Vaga(i, this));
         }
     }
-/*PARTE QUE ESTÁ RECLAMANDO COM ALGUM ERRO 
+
     public Vaga procurarVagaDisponivel() {
         return vagas.stream().filter(v -> !v.isOcupada()).findFirst().orElse(null);
     }
@@ -39,5 +41,21 @@ public class Garagem {
             if (v.isOcupada()) ocupadas.add(v);
         }
         return ocupadas;
-    }*/
+    }
+    
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public List<Vaga> getVagas() {
+        return vagas;
+    }
+
+    public void setVagas(List<Vaga> vagas) {
+        this.vagas = vagas;
+    }
 }

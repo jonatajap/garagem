@@ -1,6 +1,6 @@
 package com.mycompany.projetogaragem;
 
-import com.mycompany.forms.TelaInicial;
+import com.mycompany.forms.*;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,12 +9,9 @@ public class ProjetoGaragem {
 
     public static void main(String[] args) {
         
-        TelaInicial tela = new TelaInicial();
-        tela.setVisible(true);
-      
-        // Executa o método que cadastra dados de exemplo no banco
-        //adicionandoValores1();
-
+        java.awt.EventQueue.invokeLater(() -> {
+        new TelaInicial().setVisible(true);
+        });
     }
 
     //simula o processo de cadastrar clientes, carros, garagem e vagas.
@@ -26,29 +23,14 @@ public class ProjetoGaragem {
 
         em.getTransaction().begin();
 
-        /*
         // Criação dos carros
-        Carro carro1 = new Carro(
-                "Gol",
-                "ABC-1234",
-                "Prata");
+        Carro.Builder builderC1= new Carro.Builder();
+        builderC1.addPlaca("XXXX-YYYY").addCor("Preto").addModelo("Corsa");
+        Carro carro1 = builderC1.build();
 
-        Carro carro2 = new Carro(
-                "BMW",
-                "CBA-4321",
-                "Preta");
-*/
-        
-        Carro.Builder builder = new Carro.Builder();
-        builder.addCor("Prata").addModelo("Gol").addPlaca("XYC");
-        
-        Carro carro1 = builder.build();
-        
-        Carro.Builder builder2 = new Carro.Builder();
-        builder2.addCor("Preto").addModelo("Corola").addPlaca("JAP1108");
-       
-        Carro carro2 = builder2.build();
-        
+        Carro.Builder builderC2= new Carro.Builder();
+        builderC1.addPlaca("PPPP-CCCC").addCor("Branco").addModelo("Fusca");
+        Carro carro2 = builderC1.build();
 
         // Criação dos clientes e Relacionamento entre seus respectivos carros
         Cliente cliente1 = new Cliente(
@@ -72,8 +54,8 @@ public class ProjetoGaragem {
         em.persist(garagem);
 
         //Criação das Vagas relacionadas com a garagem
-        //Vaga vaga1 = garagem.getVagas().get(0);
-       // Vaga vaga2 = garagem.getVagas().get(1);
+        Vaga vaga1 = garagem.getVagas().get(0);
+        Vaga vaga2 = garagem.getVagas().get(1);
 
 
         //Inserção dos dados no BD
@@ -85,20 +67,18 @@ public class ProjetoGaragem {
         em.persist(cliente1);
         em.persist(cliente2);
 
-        
-        /*
-       // em.persist(vaga1);
-       // em.persist(vaga2);
+        em.persist(vaga1);
+        em.persist(vaga2);
 
         //Criação e inserção dos dados do aluguel
         Aluguel aluguel2 = new Aluguel(cliente2, vaga2);
 
         aluguel2.vagaOcupar();
-       // aluguel2.finalizarAluguel(7200000);
+        aluguel2.finalizarAluguel(7200000);
 
         em.persist(aluguel2);
         em.persist(cliente2);
-       // em.persist(vaga2);
+        em.persist(vaga2);
 
         Aluguel aluguel1 = new Aluguel(cliente1, vaga1);
 
@@ -107,7 +87,6 @@ public class ProjetoGaragem {
         em.persist(aluguel1);
         em.persist(cliente1);
         em.persist(vaga1);
-*/
 
         //Finaliza as transações e fechas as conexões
         em.getTransaction().commit();
@@ -120,7 +99,7 @@ public class ProjetoGaragem {
 
         System.out.println("Buscando os Clientes...\n");
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("umbler_database");
         EntityManager em = emf.createEntityManager();
 
         // Quantidade de clientes (JPQL Dinâmica)
@@ -134,11 +113,10 @@ public class ProjetoGaragem {
 
 
         System.out.println("Todos os clientes:\n -----");
-        /*
         for (Cliente c : todos) {
             System.out.println("Nome: " + c.getNome() + "\nCPF: " + c.getCpf() + "\nContato: " + c.getContato() + "\n-----");
         }
-*/
+
         // Buscar clientes por nome (Named Querry)
         TypedQuery<Cliente> queryPorNome = em.createNamedQuery("Cliente.buscaNome", Cliente.class);
         queryPorNome.setParameter("nome", "Carlos");
@@ -147,7 +125,7 @@ public class ProjetoGaragem {
         System.out.println("Clientes com nome Carlos:\n-----");
         for (Cliente encontrado : encontrados) {
 
-           // System.out.println("Nome: " + encontrado.getNome() + "\nCPF: " + encontrado.getCpf() + "\nContato: " + encontrado.getContato() + "\n-----");
+            System.out.println("Nome: " + encontrado.getNome() + "\nCPF: " + encontrado.getCpf() + "\nContato: " + encontrado.getContato() + "\n-----");
         }
 
         emf.close();
@@ -156,7 +134,7 @@ public class ProjetoGaragem {
 
     public static void atualizarDados(){
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("umbler_database");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -178,7 +156,7 @@ public class ProjetoGaragem {
 
     public static void deletarDados(){
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("emf");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("umbler_database");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();

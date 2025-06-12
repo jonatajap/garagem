@@ -20,7 +20,6 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cliente_id;
 
-    @Column(name="nome_cliente")
     private String nome;
 
     private String cpf;
@@ -38,6 +37,38 @@ public class Cliente {
     public void cadastrarCarro(Carro carro) {
 
         this.carro = carro;
-      //  carro.setDono(this);
+        carro.setDono(this);
     }
+    
+    public Carro getCarro(){
+        return this.carro;
+    }
+    
+    public void setCarro(Carro carro){
+        this.carro = carro;
+    }
+    
+      public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    } 
 }
